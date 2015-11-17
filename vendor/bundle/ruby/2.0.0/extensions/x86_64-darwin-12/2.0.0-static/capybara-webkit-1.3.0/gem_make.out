@@ -1,0 +1,11 @@
+/Users/u_suke/.rvm/rubies/ruby-2.0.0-p451/bin/ruby extconf.rb 
+Command 'qmake -spec macx-g++ ' not available
+
+make "DESTDIR=" clean
+make: *** No rule to make target `clean'.  Stop.
+
+make "DESTDIR="
+ok
+
+make "DESTDIR=" install
+ok

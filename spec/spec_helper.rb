@@ -1,5 +1,4 @@
 # coding: utf-8
-require 'headless'
 require 'selenium-webdriver'
 require 'capybara/rspec'
 require 'capybara/dsl'
@@ -7,15 +6,17 @@ require 'capybara/webkit'
 
 RSpec.configure do |config|
   config.include Capybara::DSL
-  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  #profile['general.useragent.override'] = "iphone"
+  #profile = Selenium::WebDriver::Firefox::Profile.new
   Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, :browser => :firefox,:profile => profile)
+    #Capybara::Selenium::Driver.new(app, :browser => :chrome,:profile => profile)
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    #Capybara::Selenium::Driver.new(app, :browser => :firefox,:profile => profile)
   end 
 
 
   config.before(:all) do
-    @headless = Headless.new
-    @headless.start
     Capybara.default_wait_time = 10
     Capybara.javascript_driver = :webkit
     Capybara.current_driver = :selenium
@@ -23,7 +24,6 @@ RSpec.configure do |config|
   end
 
   config.after(:all) do
-    @headless.destroy
   end 
 
   config.before(:all, selenium: true) do
@@ -35,4 +35,5 @@ RSpec.configure do |config|
   end 
 end
 
-Capybara.app_host = 'http://yahoo.co.jp'
+#Capybara.app_host = 'http://www.yahoo.co.jp'
+Capybara.app_host = 'http://192.168.33.30'

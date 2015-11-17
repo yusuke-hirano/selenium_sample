@@ -1,0 +1,10 @@
+/Users/u_suke/.rvm/rubies/ruby-2.0.0-p451/bin/ruby extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+make "DESTDIR=" install
+installing default libraries
