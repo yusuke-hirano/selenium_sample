@@ -12,21 +12,25 @@ describe "Sample" do
     expect(page).to have_content 'テスト1'
     #page.save_screenshot 'screenshot.png'
   end
-end
-
-describe "Sample" do
   it "test3" do
     visit '/'
     sleep 3
     click_link 'test3.html'
-    #window = page.driver.browser.window_handles()
-    #page.driver.browser.switch_to.window(window[1])
     sleep 3
-    p current_path.to_s
-    #p expect(current_path).to eq '/'
-    p URI.parse(current_url)
+    expect(current_path).to eq '/test3.html'
+  end
+  
+  it "test4" do
+    visit '/'
+    sleep 3
+    click_link 'test4.html'
+    window = page.driver.browser.window_handles()
+    page.driver.browser.switch_to.window(window[1])
+    sleep 3
+    #page.save_screenshot 'screenshot.png'
+    expect(page).to have_content('別Windowです')
+    #p URI.parse(current_url)
     #expect(page).to have_content 'テスト1'
     #page.save_screenshot 'screenshot.png'
   end
 end
-
